@@ -14,6 +14,9 @@ class DDPG(Algorithm):
         print("\t UpdatePi")
 
     def get_networks(self):
-        self.qModel = QModel("critic", 100, 10)
-        self.piModel = PiModel("actor", 100, 10)
+        act_dim, obs_dim = self.get_dim(self.env)
+        self.qModel = QModel("critic", obs_dim, act_dim)
+        print(self.qModel)
+        self.piModel = PiModel("actor",obs_dim, act_dim)
+        print(self.piModel)
         return [self.qModel, self.piModel]
